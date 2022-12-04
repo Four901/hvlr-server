@@ -164,19 +164,15 @@ let Success=false
 const user=User(req.body)
 user.save();
 res.send(req.body)*/
-console.log("here i am "
-+req);
-console.log(req.body)
+
 const errors = validationResult(req);
-   console.log(errors)
+  
   if (!errors.isEmpty()) {
     return res.status(400).json({Success, errors: errors.array() });
   }
   //so from the user schema we have removed info about which one to make indexes , now we need to do a operation to check whether the user with current mail exits or not 
   try{
-    console.log("here i am "+req.body.email);
-    console.log(req.body)
-    console.log(typeof(req.body.email))
+   
     let user=await User.findOne({email:req.body.email});
   
     if(user)
@@ -185,14 +181,13 @@ const errors = validationResult(req);
     }
     const salt=await bcrypt.genSalt(10);
     const secPass= await bcrypt.hash(req.body.Password,salt);
-    console.log(req.body)
+   
     user= await User.create({
     
       email:req.body.email,
       password: secPass
     })
-    console.log(req.body)
-    console.log(user)
+   
   
     let Success=true
     res.json({Success,user})
@@ -204,7 +199,7 @@ console.log(decoded)*/
     //.then(user => res.json(user))
     //.catch(errors,res.json({"msg":"Please enter a valid mail"}));
   }catch(error){
-    console.error(error.message)
+   // console.error(error.message)
     res.status(500).send({Success,error:"Some error occured 235"})
   }
 
@@ -230,8 +225,7 @@ const errors = validationResult(req);
   }
   //so from the user schema we have removed info about which one to make indexes , now we need to do a operation to check whether the user with current mail exits or not 
   const {email,Password}=req.body;
-  console.log("at login")
-  console.log(req.body)
+  
   try{
 
     let user=await User.findOne({email:req.body.email});
@@ -244,7 +238,7 @@ const errors = validationResult(req);
     {
       return res.status(400).json({Success,error:"Enter The Correct Credentials"});
     }
-    console.log("sdvfg")
+   
     var data={
       user:{
         id:user.id
@@ -253,7 +247,7 @@ const errors = validationResult(req);
   
     var AuthToken=jwt.sign(data,JWT_KEY);//over here we are signing the jwtauth token which is containing the id of the user
     
-    console.log(AuthToken)
+    
     Success=true
     res.json({Success,AuthToken})
     /*var decoded = jwt.verify(AuthToken, JWT_KEY);
@@ -261,7 +255,7 @@ console.log(decoded)*/
     //.then(user => res.json(user))
     //.catch(errors,res.json({"msg":"Please enter a valid mail"}));
   }catch(error){
-    console.error(error.message)
+    
     res.status(500).send({Success,error:"Internal Server Error"})
   }
 

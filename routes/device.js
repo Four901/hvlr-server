@@ -27,7 +27,7 @@ router.post('/adddevice/',fetchUser,[
 
     try{
       
-         console.log("adding")
+         //console.log("adding")
 
         const device=new Device({
          user:req.user.id
@@ -38,7 +38,7 @@ router.post('/adddevice/',fetchUser,[
   
       }catch(error)
       {
-          console.error(error.message)
+          //console.error(error.message)
           res.status(500).send("Some error occured")
       }
     })
@@ -53,9 +53,9 @@ router.put('/updatedevice/:id',fetchUser,[
           return res.status(400).json({ errors: errors.array() });
         }
         try{
-           // console.log(req)
+           // //console.log(req)
         const {D0,D1,D2,D3,D4,D5,D6,D7,D8}=req.body
-        console.log(req.params.id)
+        //console.log(req.params.id)
         const newDevice={}
       
         if(D0!=null){newDevice.D0=D0}
@@ -91,7 +91,7 @@ router.put('/updatedevice/:id',fetchUser,[
          }
          catch(error)
      {
-         console.error(error.message)
+         //console.error(error.message)
          res.status(500).send("Some error occured")
      }
         })
@@ -107,7 +107,7 @@ router.get('/getdevices/',fetchUser,[
               return res.status(400).json({ errors: errors.array() });
             }
             try{
-               // console.log(req)
+               // //console.log(req)
             
            
           
@@ -116,7 +116,7 @@ router.get('/getdevices/',fetchUser,[
              }
              catch(error)
          {
-             console.error(error.message)
+             //console.error(error.message)
              res.status(500).send("Some error occured")
          }
             })
@@ -131,7 +131,7 @@ router.get('/getdevice/:id',fetchUser,[
                   return res.status(400).json({ errors: errors.array() });
                 }
                 try{
-                   // console.log(req)
+                   // //console.log(req)
                 
                
     
@@ -140,7 +140,7 @@ router.get('/getdevice/:id',fetchUser,[
                  }
                  catch(error)
              {
-                 console.error(error.message)
+                 //console.error(error.message)
                  res.status(500).send("Some error occured")
              }
                 })

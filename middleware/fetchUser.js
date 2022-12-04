@@ -10,7 +10,7 @@ const JWT_KEY=process.env.jwt_key
 
 const fetchUser=async(req,res,next)=>{
     
-    console.log("i am fetching")
+    //console.log("i am fetching")
   
     const token=req.header('auth-token')
     
