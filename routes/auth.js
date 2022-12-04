@@ -212,7 +212,7 @@ console.log(decoded)*/
 router.post('/loginuser',[
   body('email',"Please Enter the email"),
   // password must be at least 5 chars long
-  body('Password',"Password can not be blank").exists(),
+  body('Password',"Password can not be blank"),
 ],async (req,res)=>{
   let Success=false
 /*console.log(req.body)
@@ -264,14 +264,14 @@ console.log(decoded)*/
 
 
 
-router.post('/loginuser1',[
-
-],async (req,res)=>{
+router.post('/loginuser1',async (req,res)=>{
   let Success=false
 /*console.log(req.body)
 const user=User(req.body)
 user.save();
 res.send(req.body)*/
+console.log("loog")
+console.log(req.body)
 const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({Success, errors: errors.array() });
