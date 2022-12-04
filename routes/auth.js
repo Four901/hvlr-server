@@ -264,6 +264,59 @@ console.log(decoded)*/
 
 
 
+router.post('/loginuser1',[
+
+],async (req,res)=>{
+  let Success=false
+/*console.log(req.body)
+const user=User(req.body)
+user.save();
+res.send(req.body)*/
+const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({Success, errors: errors.array() });
+  }
+  //so from the user schema we have removed info about which one to make indexes , now we need to do a operation to check whether the user with current mail exits or not 
+  const {email,Password}=req.body;
+  console.log("hey bro")
+  try{
+
+    let user=await User.findOne({email:req.body.email});
+    if(!user)
+    {
+       return res.status(400).json({Success,error:"Enter The Correct Credentials"});
+    }
+    var passwordCompare=await bcrypt.compare(Password,user.password);
+    if(!passwordCompare)
+    {
+      return res.status(400).json({Success,error:"Enter The Correct Credentials"});
+    }
+   
+    var data={
+      user:{
+        id:user.id
+      }
+    }
+  
+    var AuthToken=jwt.sign(data,JWT_KEY);//over here we are signing the jwtauth token which is containing the id of the user
+    
+    
+    Success=true
+    res.json({Success,AuthToken})
+    /*var decoded = jwt.verify(AuthToken, JWT_KEY);
+console.log(decoded)*/
+    //.then(user => res.json(user))
+    //.catch(errors,res.json({"msg":"Please enter a valid mail"}));
+  }catch(error){
+    
+    res.status(500).send({Success,error:"Internal Server Error"})
+  }
+
+    
+})
+
+
+
 
 
 
