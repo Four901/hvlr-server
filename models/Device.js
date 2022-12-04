@@ -11,6 +11,10 @@ const DeviceSchema=new Schema({
          type:mongoose.Schema.Types.ObjectId,
          ref:'user'
     },
+    status:{
+         type:String,
+         default:"offline"
+    },
     D0:{
         type:Boolean,
         default:false
