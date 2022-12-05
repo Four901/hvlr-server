@@ -289,9 +289,10 @@ const errors = validationResult(req);
   console.log(req.password)
 const email=req.headers.email;
 const Password=req.headers.password
+console.log(email+" "+Password)
   try{
 
-    let user=await User.findOne({email:req.body.email});
+    let user=await User.findOne({email:email});
     if(!user)
     {
        return res.status(400).json({Success,error:"Enter The Correct Credentials"});
