@@ -190,37 +190,21 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                    const number=parseInt(req.headers.number);
     
                 let device=await Device.find({user:req.user.id,Number:number})
-                res.json({device})
-                 }
-                 catch(error)
-             {
-                 console.error(error.message)
-                 res.status(500).send("Some error occured")
-             }
-                })
-router.post('/getdevicet',async (req,res)=>{
-           
-             
-              console.log("at getting")
-               console.log(req.headers)
-                const errors = validationResult(req);
-                if (!errors.isEmpty()) {
-                  return res.status(400).json({ errors: errors.array() });
-                }
-                try{
-                   // console.log(req)
-                   let token=req.headers.authtoken;
-                   console.log("auth")
-                   console.log(token)
-                   token = token.substring(1, token.length-1);
-                   console.log(token)
-                       const data= await jwt.verify(token,JWT_KEY);//to verify the authtoken wiht key
-                       req.user=data.user;
+                
+                let sendDevice=[];
+                sendDevice.concat(device._id);
+                sendDevice.concat(device.D0);
+                sendDevice.concat(device.D1);
+                sendDevice.concat(device.D2);
+                sendDevice.concat(device.D3);
+                sendDevice.concat(device.D4);
+                sendDevice.concat(device.D5);
+                sendDevice.concat(device.D6);
+                sendDevice.concat(device.D7);
+                sendDevice.concat(device.D8);
 
-                       const number=parseInt(req.headers.number);
-    
-                let device=await Device.find({user:req.user.id,Number:number})
-                res.json({device})
+                
+                res.json(sendDevice)
                  }
                  catch(error)
              {
@@ -228,7 +212,7 @@ router.post('/getdevicet',async (req,res)=>{
                  res.status(500).send("Some error occured")
              }
                 })
-        
+
         
 
       
