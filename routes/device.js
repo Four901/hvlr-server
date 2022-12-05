@@ -117,8 +117,8 @@ router.put('/updatestatus',fetchUser1,[
             try{
                // console.log(req)
             const status=req.headers.status;
-            const id=req.headers.id;
-            
+            let id=req.headers.id;
+            id = id.substring(1, id.length-1);
             const newDevice={}
           
             
@@ -205,7 +205,7 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                 sendDevice.push(device[0].D8);
 
                 
-                res.json(sendDevice)
+                res.json({sendDevice})
                  }
                  catch(error)
              {
