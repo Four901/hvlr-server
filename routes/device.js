@@ -187,7 +187,7 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                 try{
                    // console.log(req)
                 
-                   const number=req.headers.number;
+                   const number=parseInt(req.headers.number);
     
                 let device=await Device.find({user:req.user.id,Number:number})
                 res.json({device})
@@ -200,8 +200,7 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                 })
 router.post('/getdevicet',async (req,res)=>{
            
-              console.log("atgetting")
-              console.log(req)
+             
               console.log("at getting")
                console.log(req.headers)
                 const errors = validationResult(req);
@@ -217,7 +216,7 @@ router.post('/getdevicet',async (req,res)=>{
                        const data= await jwt.verify(token,JWT_KEY);//to verify the authtoken wiht key
                        req.user=data.user;
 
-                   const number=req.headers.number;
+                       const number=parseInt(req.headers.number);
     
                 let device=await Device.find({user:req.user.id,Number:number})
                 res.json({device})
