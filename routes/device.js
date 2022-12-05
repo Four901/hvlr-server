@@ -129,7 +129,7 @@ router.put('/updatestatus',fetchUser1,[
             
      
      
-            let device=await Device.find(id)
+            let device=await Device.findById(id)
             if(!device){return res.status(404).send("Not Found")}
             if(device.user.toString()!==req.user.id){return res.status(404).send("Not Allowed")}
              
