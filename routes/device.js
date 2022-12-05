@@ -200,7 +200,7 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                 })
 router.post('/getdevicet',async (req,res)=>{
   
-              
+              console.log(req)
               console.log("at getting")
                console.log(req.headers)
                 const errors = validationResult(req);
