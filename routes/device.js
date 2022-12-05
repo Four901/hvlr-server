@@ -176,11 +176,7 @@ router.get('/getdevices/',fetchUser,[
          }
             })
 
-router.get('/getdevice',fetchUser1,[
-    
-
-        
-            ],async (req,res)=>{
+router.get('/getdevice',fetchUser1,async (req,res)=>{
               console.log("at getting")
                console.log(req.headers)
                 const errors = validationResult(req);
