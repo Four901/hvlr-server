@@ -192,20 +192,20 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                 let device=await Device.find({user:req.user.id,Number:number})
                 
                 let sendDevice=[];
-                 console.log(device);
-                sendDevice.push([device._id]);
-                sendDevice.push(device.D0);
-                sendDevice.push(device.D1);
-                sendDevice.push(device.D2);
-                sendDevice.push(device.D3);
-                sendDevice.push(device.D4);
-                sendDevice.push(device.D5);
-                sendDevice.push(device.D6);
-                sendDevice.push(device.D7);
-                sendDevice.push(device.D8);
+               
+                sendDevice.push(device[0]._id);
+                sendDevice.push(device[0].D0);
+                sendDevice.push(device[0].D1);
+                sendDevice.push(device[0].D2);
+                sendDevice.push(device[0].D3);
+                sendDevice.push(device[0].D4);
+                sendDevice.push(device[0].D5);
+                sendDevice.push(device[0].D6);
+                sendDevice.push(device[0].D7);
+                sendDevice.push(device[0].D8);
 
-                console.log({sendDevice});
-                res.json({sendDevice})
+                
+                res.json(sendDevice)
                  }
                  catch(error)
              {
