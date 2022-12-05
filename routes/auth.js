@@ -225,7 +225,7 @@ const errors = validationResult(req);
   }
   //so from the user schema we have removed info about which one to make indexes , now we need to do a operation to check whether the user with current mail exits or not 
   const {email,Password}=req.body;
-  console.log("hey bro")
+ 
   
   try{
 
@@ -271,7 +271,7 @@ router.post('/loginuser1',async (req,res)=>{
 const user=User(req.body)
 user.save();
 res.send(req.body)*/
-console.log("loog")
+
 
 const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -279,14 +279,7 @@ const errors = validationResult(req);
   }
   //so from the user schema we have removed info about which one to make indexes , now we need to do a operation to check whether the user with current mail exits or not 
   
-  console.log("hey bro + body")
-  console.log(req.body)
-  console.log(req.header.email)
-  console.log(req.headers)
-  console.log(req.rawHeaders)
-  console.log(req.rawHeaders.email)
-  console.log(req.email)
-  console.log(req.password)
+  
 const email=req.headers.email;
 const Password=req.headers.password
 console.log(email+" "+Password)
@@ -313,7 +306,7 @@ console.log(email+" "+Password)
     
     
     Success=true
-    res.json({Success,AuthToken})
+    res.json(AuthToken)
     /*var decoded = jwt.verify(AuthToken, JWT_KEY);
 console.log(decoded)*/
     //.then(user => res.json(user))
