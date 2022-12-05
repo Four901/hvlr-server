@@ -192,7 +192,8 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                 let device=await Device.find({user:req.user.id,Number:number})
                 
                 let sendDevice=[];
-                sendDevice.push(device._id);
+                 console.log(device);
+                sendDevice.push([device._id]);
                 sendDevice.push(device.D0);
                 sendDevice.push(device.D1);
                 sendDevice.push(device.D2);
@@ -203,8 +204,8 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                 sendDevice.push(device.D7);
                 sendDevice.push(device.D8);
 
-                console.log(sendDevice);
-                res.json(sendDevice)
+                console.log({sendDevice});
+                res.json({sendDevice})
                  }
                  catch(error)
              {
