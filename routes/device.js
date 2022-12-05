@@ -177,7 +177,7 @@ router.get('/getdevices/',fetchUser,[
              res.status(500).send("Some error occured")
          }
             })
-            router.get('/getdevice',fetchUser1,async (req,res)=>{
+router.get('/getdevice',fetchUser1,async (req,res)=>{
               console.log("at getting")
                console.log(req.headers)
                 const errors = validationResult(req);
@@ -198,7 +198,7 @@ router.get('/getdevices/',fetchUser,[
                  res.status(500).send("Some error occured")
              }
                 })
-router.get('/getdevicet',async (req,res)=>{
+router.post('/getdevicet',async (req,res)=>{
   
               
               console.log("at getting")
@@ -215,7 +215,7 @@ router.get('/getdevicet',async (req,res)=>{
                   
                        const data= await jwt.verify(token,JWT_KEY);//to verify the authtoken wiht key
                        req.user=data.user;
-                       
+
                    const number=req.headers.number;
     
                 let device=await Device.find({user:req.user.id,Number:number})
