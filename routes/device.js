@@ -119,7 +119,7 @@ router.put('/updatestatus',fetchUser1,[
             const status=req.headers.status;
             let id=req.headers.id;
            
-           // id = id.substring(1, id.length-1);
+            id = id.substring(1, id.length-1);
 
             console.log(status+" "+id)
             const newDevice={}
