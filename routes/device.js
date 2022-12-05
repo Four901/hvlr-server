@@ -121,11 +121,11 @@ router.put('/updatestatus',fetchUser1,[
            
             id = id.substring(1, id.length-1);
 
-            console.log(status+" "+id)
+            console.log(status.toString()+" "+id)
             const newDevice={}
           
             
-            if(status!=null){newDevice.status=status.toString()}
+            if(status.toString()=="online"){newDevice.status=status.toString()}
             
      
      
