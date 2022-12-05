@@ -199,6 +199,7 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
              }
                 })
 router.post('/getdevicet',async (req,res)=>{
+              console.log("bros")
               console.log("atgetting")
               console.log(req)
               console.log("at getting")
