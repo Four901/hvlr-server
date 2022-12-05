@@ -209,7 +209,7 @@ router.post('/getdevicet',async (req,res)=>{
                 }
                 try{
                    // console.log(req)
-                   const token=req.headers.authtoken;
+                   let token=req.headers.authtoken;
                    console.log("auth")
                    console.log(token)
                    token = token.substring(1, token.length-1);
