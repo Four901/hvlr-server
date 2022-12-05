@@ -125,7 +125,7 @@ router.put('/updatestatus',fetchUser1,[
             const newDevice={}
           
             
-            if(status!=null){newDevice.status=status}
+            if(status!=null){newDevice.status=status.toString()}
             
      
      
