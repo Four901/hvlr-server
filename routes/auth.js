@@ -281,8 +281,9 @@ const errors = validationResult(req);
   const {email,Password}=req.body;
   console.log("hey bro + body")
   console.log(req.body)
-  console.log(req.header)
+  console.log(req.header.email)
   console.log(req.rawHeaders)
+  console.log(req.rawHeaders.email)
   console.log(req.email)
   console.log(req.password)
   try{
