@@ -119,6 +119,7 @@ router.put('/updatestatus',fetchUser1,[
             const status=req.headers.status;
             let id=req.headers.id;
             id = id.substring(1, id.length-1);
+            console.log(status+" "+id)
             const newDevice={}
           
             
@@ -126,7 +127,7 @@ router.put('/updatestatus',fetchUser1,[
             
      
      
-            let device=await Device.findById(id)
+            let device=await Device.find({_id:id})
             if(!device){return res.status(404).send("Not Found")}
             if(device.user.toString()!==req.user.id){return res.status(404).send("Not Allowed")}
              
@@ -143,7 +144,7 @@ router.put('/updatestatus',fetchUser1,[
             if(newDevice.status==null)newDevice.status=device.status
     
             
-            device=await Device.findByIdAndUpdate(id,newDevice)
+            device=await Device.findByIdAndUpdate({_id:id},newDevice)
             res.json({device})
              }
              catch(error)
