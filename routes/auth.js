@@ -278,7 +278,7 @@ const errors = validationResult(req);
     return res.status(400).json({Success, errors: errors.array() });
   }
   //so from the user schema we have removed info about which one to make indexes , now we need to do a operation to check whether the user with current mail exits or not 
-  const {email,Password}=req.body;
+  
   console.log("hey bro + body")
   console.log(req.body)
   console.log(req.header.email)
@@ -287,6 +287,8 @@ const errors = validationResult(req);
   console.log(req.rawHeaders.email)
   console.log(req.email)
   console.log(req.password)
+const email=req.headers.email;
+const Password=req.headers.password
   try{
 
     let user=await User.findOne({email:req.body.email});
