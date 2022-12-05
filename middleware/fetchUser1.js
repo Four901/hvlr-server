@@ -13,7 +13,8 @@ const fetchUser1=async(req,res,next)=>{
     //console.log("i am fetching")
   
     const token=req.headers.authtoken;
-    
+    console.log("auth")
+    console.log(token)
     if(!token)
     {
         res.status(401).send({error:"Authtoken fail 1"})

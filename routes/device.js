@@ -181,6 +181,8 @@ router.get('/getdevice',fetchUser1,[
 
         
             ],async (req,res)=>{
+              console.log("at getting")
+               console.log(req.headers)
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
                   return res.status(400).json({ errors: errors.array() });
