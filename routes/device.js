@@ -212,7 +212,8 @@ router.post('/getdevicet',async (req,res)=>{
                    const token=req.headers.authtoken;
                    console.log("auth")
                    console.log(token)
-                  
+                   token = token.substring(1, token.length-1);
+                   console.log(token)
                        const data= await jwt.verify(token,JWT_KEY);//to verify the authtoken wiht key
                        req.user=data.user;
 
