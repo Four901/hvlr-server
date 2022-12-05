@@ -206,7 +206,7 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                 sendDevice.push(device[0].D8);
 
                 
-                res.json({sendDevice})
+                res.json(sendDevice)
                  }
                  catch(error)
              {
