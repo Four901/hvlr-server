@@ -282,6 +282,7 @@ const errors = validationResult(req);
   console.log("hey bro + body")
   console.log(req.body)
   console.log(req.header.email)
+  console.log(req.headers)
   console.log(req.rawHeaders)
   console.log(req.rawHeaders.email)
   console.log(req.email)
