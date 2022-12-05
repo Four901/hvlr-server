@@ -7,6 +7,8 @@ const router=express.Router();
 const fetchUser=require('../middleware/fetchUser')
 const fetchUser1=require('../middleware/fetchUser1')
 const Device=require('../models/Device')
+var jwt = require('jsonwebtoken');
+const JWT_KEY=process.env.jwt_key
 const { body, validationResult } = require('express-validator');
  //this will give the all the notes of a loggedin user
 
@@ -175,8 +177,7 @@ router.get('/getdevices/',fetchUser,[
              res.status(500).send("Some error occured")
          }
             })
-
-router.get('/getdevice',fetchUser1,async (req,res)=>{
+            router.get('/getdevice',fetchUser1,async (req,res)=>{
               console.log("at getting")
                console.log(req.headers)
                 const errors = validationResult(req);
@@ -186,6 +187,35 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                 try{
                    // console.log(req)
                 
+                   const number=req.headers.number;
+    
+                let device=await Device.find({user:req.user.id,Number:number})
+                res.json({device})
+                 }
+                 catch(error)
+             {
+                 console.error(error.message)
+                 res.status(500).send("Some error occured")
+             }
+                })
+router.get('/getdevicet',async (req,res)=>{
+  
+              
+              console.log("at getting")
+               console.log(req.headers)
+                const errors = validationResult(req);
+                if (!errors.isEmpty()) {
+                  return res.status(400).json({ errors: errors.array() });
+                }
+                try{
+                   // console.log(req)
+                   const token=req.headers.authtoken;
+                   console.log("auth")
+                   console.log(token)
+                  
+                       const data= await jwt.verify(token,JWT_KEY);//to verify the authtoken wiht key
+                       req.user=data.user;
+                       
                    const number=req.headers.number;
     
                 let device=await Device.find({user:req.user.id,Number:number})
