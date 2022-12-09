@@ -181,12 +181,13 @@ router.put('/updateimage',fetchUser1,[
     
                 console.log(imagei+" "+id)
                 const newDevice={}
-                const image=imagei.split(",");
-                console.log(image)
+                const images=imagei.split(",");
+                console.log(images)
                 let newImage=[];
-                for(let j=0;j<image.size();i++)
+
+                for(let j=0;j<images.length();i++)
                 {
-                  newImage[i]=Number(image[i]);
+                  newImage[i]=Number(images[i]);
                 }
                 console.log(newImage)
                let arr= new Uint16Array(newImage).buffer;
