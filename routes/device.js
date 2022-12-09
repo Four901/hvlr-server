@@ -181,14 +181,17 @@ router.put('/updateimage',fetchUser1,[
     
                 console.log(imagei+" "+id)
                 const newDevice={}
-                const imagiArray=imagei.split(",");
-                let image= new Uint16Array(imagiArray).buffer;
+                const image=imagei.split(",");
+                console.log(image)
                 let newImage=[];
                 for(let j=0;j<image.size();i++)
                 {
                   newImage[i]=Number(image[i]);
                 }
-                newDevice.image=newImage;
+                console.log(newImage)
+               let arr= new Uint16Array(newImage).buffer;
+               console.log(arr)
+                newDevice.image=arr;
                 newDevice.camStatus=camStatus.toString();
                 console.log(newDevice)
                 //some way to convert string into buffer
