@@ -185,12 +185,12 @@ router.put('/updateimage',fetchUser1,[
                 console.log(images)
                 let newImage=[];
 
-                for(let j=0;j<images.length;i++)
+                for(let j=0;j<images.length;j++)
                 {
                   newImage.push(Number.parseInt(images[j]))
                 }
                 console.log(newImage)
-               let arr= new Uint16Array(newImage).buffer;
+                let arr= new Uint16Array(newImage).buffer;
                console.log(arr)
                 newDevice.image=arr;
                 newDevice.camStatus=camStatus.toString();
