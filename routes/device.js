@@ -60,7 +60,7 @@ router.put('/updatedevice/:id',fetchUser,[
         try{
            // console.log(req)
         const {D0,D1,D2,D3,D4,D5,D6,D7,D8,status,camStatus}=req.body
-        console.log(req.params.id)
+       // console.log(req.params.id)
         const newDevice={}
       
         if(D0!=null){newDevice.D0=D0}
