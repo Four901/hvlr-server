@@ -161,6 +161,30 @@ router.put('/updatestatus',fetchUser1,[
          }
             })
 
+
+
+
+            /*From Buffer to ArrayBuffer:
+
+function toArrayBuffer(buf) {
+    const ab = new ArrayBuffer(buf.length);
+    const view = new Uint8Array(ab);
+    for (let i = 0; i < buf.length; ++i) {
+        view[i] = buf[i];
+    }
+    return ab;
+}
+From ArrayBuffer to Buffer:
+
+function toBuffer(ab) {
+    const buf = Buffer.alloc(ab.byteLength);
+    const view = new Uint8Array(ab);
+    for (let i = 0; i < buf.length; ++i) {
+        buf[i] = view[i];
+    }
+    return buf;
+}*/
+
 router.put('/updateimage',fetchUser1,[
     
 
@@ -192,7 +216,15 @@ router.put('/updateimage',fetchUser1,[
                 console.log(newImage)
                 let arr= new Uint16Array(newImage).buffer;
                console.log(arr)
-                newDevice.image=arr;
+
+               const buf = Buffer.alloc(arr.byteLength);
+               const view = new Uint8Array(arr);
+               for (let i = 0; i < buf.length; ++i) {
+                   buf[i] = view[i];
+               }
+               console.log(buf)
+
+                newDevice.image=buf;
                 newDevice.camStatus=camStatus.toString();
                 console.log(newDevice)
                 //some way to convert string into buffer
