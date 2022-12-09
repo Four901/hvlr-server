@@ -54,9 +54,14 @@ const DeviceSchema=new Schema({
     D8:{
         type:Boolean,
         default:false
+    },
+    image:{
+        type:Buffer
+    },
+    camStatus:{
+        type:String,
+        default:"offline"
     }
-
-
 });
 
 module.exports=mongoose.model('device',DeviceSchema);

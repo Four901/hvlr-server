@@ -59,7 +59,7 @@ router.put('/updatedevice/:id',fetchUser,[
         }
         try{
            // console.log(req)
-        const {D0,D1,D2,D3,D4,D5,D6,D7,D8,status}=req.body
+        const {D0,D1,D2,D3,D4,D5,D6,D7,D8,status,camStatus}=req.body
         console.log(req.params.id)
         const newDevice={}
       
@@ -73,6 +73,7 @@ router.put('/updatedevice/:id',fetchUser,[
         if(D7!=null){newDevice.D7=D7}
         if(D8!=null){newDevice.D8=D8}
         if(status!=null){newDevice.status=status}
+        if(camStatus!=null){newDevice.camStatus=camStatus}
         
  
  
@@ -91,6 +92,8 @@ router.put('/updatedevice/:id',fetchUser,[
         if(newDevice.D7==null)newDevice.D7=device.D7
         if(newDevice.D8==null)newDevice.D8=device.D8
         if(newDevice.status==null)newDevice.status=device.status
+        if(newDevice.image==null)newDevice.image=device.image
+        if(newDevice.camStatus==null)newDevice.camStatus=device.camStatus
 
         
         device=await Device.findByIdAndUpdate(req.params.id,newDevice)
@@ -144,10 +147,12 @@ router.put('/updatestatus',fetchUser1,[
             if(newDevice.D7==null)newDevice.D7=device.D7
             if(newDevice.D8==null)newDevice.D8=device.D8
             if(newDevice.status==null)newDevice.status=device.status
+            if(newDevice.image==null)newDevice.image=device.image
+            if(newDevice.camStatus==null)newDevice.camStatus=device.camStatus
     
             
             device=await Device.findByIdAndUpdate(id,newDevice)
-            res.json({device})
+           
              }
              catch(error)
          {
@@ -155,6 +160,70 @@ router.put('/updatestatus',fetchUser1,[
              res.status(500).send("Some error occured")
          }
             })
+
+router.put('/updateimage',fetchUser1,[
+    
+
+        
+            ],async (req,res)=>{
+                const errors = validationResult(req);
+                if (!errors.isEmpty()) {
+                  return res.status(400).json({ errors: errors.array() });
+                }
+                try{
+                   // console.log(req)
+                   console.log("at image")
+               const imagei=req.headers.image;
+                const camStatus=req.headers.camstatus;
+                let id=req.headers.id;
+                 console.log(req.headers)
+                id = id.substring(1, id.length-1);
+    
+                console.log(imagei+" "+id)
+                const newDevice={}
+                const imagiArray=imagei.split(",");
+                let image= new Uint16Array(imagiArray).buffer;
+                let newImage=[];
+                for(let j=0;j<image.size();i++)
+                {
+                  newImage[i]=Number(image[i]);
+                }
+                newDevice.image=newImage;
+                newDevice.camStatus=camStatus.toString();
+                console.log(newDevice)
+                //some way to convert string into buffer
+               // if(image.toString()=="online"){newDevice.image=image.toString()}
+                
+         
+         
+                let device=await Device.findById(id)
+                if(!device){return res.status(404).send("Not Found")}
+                if(device.user.toString()!==req.user.id){return res.status(404).send("Not Allowed")}
+                 
+               // if(newReply.question==null)newReply.question=post.question
+                if(newDevice.D0==null)newDevice.D0=device.D0
+                if(newDevice.D1==null)newDevice.D1=device.D1
+                if(newDevice.D2==null)newDevice.D2=device.D2
+                if(newDevice.D3==null)newDevice.D3=device.D3
+                if(newDevice.D4==null)newDevice.D4=device.D4
+                if(newDevice.D5==null)newDevice.D5=device.D5
+                if(newDevice.D6==null)newDevice.D6=device.D6
+                if(newDevice.D7==null)newDevice.D7=device.D7
+                if(newDevice.D8==null)newDevice.D8=device.D8
+                if(newDevice.status==null)newDevice.status=device.status
+                if(newDevice.image==null)newDevice.image=device.image
+                if(newDevice.camStatus==null)newDevice.camStatus=device.camStatus
+        
+                
+                device=await Device.findByIdAndUpdate(id,newDevice)
+               
+                 }
+                 catch(error)
+             {
+                 console.error(error.message)
+                 res.status(500).send("Some error occured")
+             }
+                })            
         
         
 router.get('/getdevices/',fetchUser,[
@@ -181,8 +250,7 @@ router.get('/getdevices/',fetchUser,[
          }
             })
 router.get('/getdevice',fetchUser1,async (req,res)=>{
-              console.log("at getting")
-               console.log(req.headers)
+             
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
                   return res.status(400).json({ errors: errors.array() });
