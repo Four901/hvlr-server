@@ -315,7 +315,7 @@ router.put('/controllingside',fetchUser1,[
                 let device=await Device.find({user:req.user.id,Number:number})
                 if(!device){return res.status(404).send("Not Found")}
                 if(device.user.toString()!==req.user.id){return res.status(404).send("Not Allowed")}
-                 
+                 //
                // if(newReply.question==null)newReply.question=post.question
                 if(newDevice.D0==null)newDevice.D0=device.D0
                 if(newDevice.D1==null)newDevice.D1=device.D1
