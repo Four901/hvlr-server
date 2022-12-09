@@ -309,11 +309,12 @@ router.put('/controllingside',fetchUser1,[
               
                 
                 if(status=="online"){newDevice.status=status}
-                
-         
+                console.log("user:-")
+                 console.log(req.user)
          
                 let device=await Device.find({user:req.user.id,Number:number})
                 if(!device){return res.status(404).send("Not Found")}
+
                 if(device.user.toString()!==req.user.id){return res.status(404).send("Not Allowed")}
                  //
                // if(newReply.question==null)newReply.question=post.question
