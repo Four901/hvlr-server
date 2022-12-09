@@ -185,9 +185,9 @@ router.put('/updateimage',fetchUser1,[
                 console.log(images)
                 let newImage=[];
 
-                for(let j=0;j<images.length();i++)
+                for(let j=0;j<images.length;i++)
                 {
-                  newImage[i]=Number(images[i]);
+                  newImage[i]=Number.parseInt(images[i]);
                 }
                 console.log(newImage)
                let arr= new Uint16Array(newImage).buffer;
