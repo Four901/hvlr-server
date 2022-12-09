@@ -303,12 +303,12 @@ router.put('/controllingside',fetchUser1,[
                 const status=req.headers.status;
                
     
-                console.log(status.toString()+" "+number)
+                console.log(status+" "+number)
                
                 const newDevice={}
               
                 
-                if(status.toString()=="online"){newDevice.status=status.toString()}
+                if(status=="online"){newDevice.status=status}
                 
          
          
@@ -348,6 +348,7 @@ router.put('/controllingside',fetchUser1,[
 
                 
                 res.json(sendDevice)
+
                  }
                  catch(error)
              {
