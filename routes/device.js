@@ -197,13 +197,13 @@ router.put('/updateimage',fetchUser1,[
                 try{
                    // console.log(req)
                    console.log("at image")
-               const imagei=req.headers.image;
+                const imagei=req.headers.image;
                 const camStatus=req.headers.camstatus;
-                let id=req.headers.id;
+                const number=parseInt(req.headers.number);
                  console.log(req.headers)
-                id = id.substring(1, id.length-1);
+                
     
-                console.log(imagei+" "+id)
+                console.log(imagei+" "+number)
                 const newDevice={}
                 const images=imagei.split(",");
                 console.log(images)
@@ -232,7 +232,7 @@ router.put('/updateimage',fetchUser1,[
                 
          
          
-                let device=await Device.findById(id)
+                let device=await Device.find({user:req.user.id,Number:number})
                 if(!device){return res.status(404).send("Not Found")}
                 if(device.user.toString()!==req.user.id){return res.status(404).send("Not Allowed")}
                  
@@ -251,7 +251,7 @@ router.put('/updateimage',fetchUser1,[
                 if(newDevice.camStatus==null)newDevice.camStatus=device.camStatus
         
                 
-                device=await Device.findByIdAndUpdate(id,newDevice)
+                device=await Device.find({user:req.user.id,Number:number}).update(newDevice)
                
                  }
                  catch(error)
@@ -361,6 +361,11 @@ router.put('/controllingside',fetchUser1,[
              }
                 })
 
+
+
+
+
+                
 
 router.get('/getdevice',fetchUser1,async (req,res)=>{
              
