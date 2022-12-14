@@ -271,8 +271,10 @@ router.post('/loginuser1',async (req,res)=>{
 const user=User(req.body)
 user.save();
 res.send(req.body)*/
-
+console.log("at the login side")
 console.log(req)
+console.log(req.email)
+console.log(req.password)
 const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({Success, errors: errors.array() });
