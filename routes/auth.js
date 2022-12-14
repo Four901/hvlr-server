@@ -272,7 +272,7 @@ const user=User(req.body)
 user.save();
 res.send(req.body)*/
 
-
+console.log(req)
 const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({Success, errors: errors.array() });
