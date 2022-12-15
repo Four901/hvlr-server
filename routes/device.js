@@ -185,7 +185,7 @@ function toBuffer(ab) {
     return buf;
 }*/
 
-router.put('/updateimage',fetchUser1,[
+router.post('/updateimage',fetchUser1,[
     
 
         
