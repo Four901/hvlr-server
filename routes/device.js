@@ -191,6 +191,7 @@ router.post('/updateimage',fetchUser1,[
         
             ],async (req,res)=>{
               console.log("at image")
+              console.log(req)
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
                   return res.status(400).json({ errors: errors.array() });
@@ -202,7 +203,7 @@ router.post('/updateimage',fetchUser1,[
                 const camStatus=req.headers.camstatus;
                 const number=parseInt(req.headers.number);
                  console.log(req.headers)
-                
+                 
     
                 console.log(imagei+" "+number)
                 const newDevice={}
