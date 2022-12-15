@@ -190,6 +190,7 @@ router.post('/updateimage',fetchUser1,[
 
         
             ],async (req,res)=>{
+              console.log("at image")
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
                   return res.status(400).json({ errors: errors.array() });
@@ -233,22 +234,21 @@ router.post('/updateimage',fetchUser1,[
          
          
                 let device=await Device.find({user:req.user.id,Number:number})
-                if(!device){return res.status(404).send("Not Found")}
-                if(device.user.toString()!==req.user.id){return res.status(404).send("Not Allowed")}
-                 
+                if(!device[0]){return res.status(404).send("Not Found")}
+               
                // if(newReply.question==null)newReply.question=post.question
-                if(newDevice.D0==null)newDevice.D0=device.D0
-                if(newDevice.D1==null)newDevice.D1=device.D1
-                if(newDevice.D2==null)newDevice.D2=device.D2
-                if(newDevice.D3==null)newDevice.D3=device.D3
-                if(newDevice.D4==null)newDevice.D4=device.D4
-                if(newDevice.D5==null)newDevice.D5=device.D5
-                if(newDevice.D6==null)newDevice.D6=device.D6
-                if(newDevice.D7==null)newDevice.D7=device.D7
-                if(newDevice.D8==null)newDevice.D8=device.D8
-                if(newDevice.status==null)newDevice.status=device.status
-                if(newDevice.image==null)newDevice.image=device.image
-                if(newDevice.camStatus==null)newDevice.camStatus=device.camStatus
+                if(newDevice.D0==null)newDevice.D0=device[0].D0
+                if(newDevice.D1==null)newDevice.D1=device[0].D1
+                if(newDevice.D2==null)newDevice.D2=device[0].D2
+                if(newDevice.D3==null)newDevice.D3=device[0].D3
+                if(newDevice.D4==null)newDevice.D4=device[0].D4
+                if(newDevice.D5==null)newDevice.D5=device[0].D5
+                if(newDevice.D6==null)newDevice.D6=device[0].D6
+                if(newDevice.D7==null)newDevice.D7=device[0].D7
+                if(newDevice.D8==null)newDevice.D8=device[0].D8
+                if(newDevice.status==null)newDevice.status=device[0].status
+                if(newDevice.image==null)newDevice.image=device[0].image
+                if(newDevice.camStatus==null)newDevice.camStatus=device[0].camStatus
         
                 
                 device=await Device.find({user:req.user.id,Number:number}).update(newDevice)
