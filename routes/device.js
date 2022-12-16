@@ -198,7 +198,7 @@ router.post('/updateimage',fetchUser1,[
                 try{
                    // console.log(req)
                    console.log("at image")
-                const imagei=req.headers.image;
+                let imagei=req.headers.image;
                 imagei = imagei.substring(1, imagei.length-1);
                 const camStatus=req.headers.camstatus;
                 const number=parseInt(req.headers.number);
@@ -207,7 +207,7 @@ router.post('/updateimage',fetchUser1,[
     
                 console.log(imagei+" "+number)
                 const newDevice={}
-                const images=imagei.split(",");
+                const images=imagei.split(" ");
                 console.log(images)
                 let newImage=[];
 
