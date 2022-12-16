@@ -58,6 +58,9 @@ const DeviceSchema=new Schema({
     image:{
         type:String
     },
+    preImage:{
+        type:String
+    },
     camStatus:{
         type:String,
         default:"offline"

@@ -254,14 +254,18 @@ router.post('/updateimage',fetchUser1,[
                 if(newDevice.status==null)newDevice.status=device[0].status
               //  if(newDevice.image==null)newDevice.image=device[0].image
                 if(newDevice.camStatus==null)newDevice.camStatus=device[0].camStatus
+                if(newDevice.preImage==null)newDevice.preImage=device[0].preImage
         
                   if(stream==='start')
                   {
+                    newDevice.preImage=device[0].image;
                     newDevice.image=imagei;
+
                   }
                   else{
                      console.log(device[0].image[device[0].image.length-1]+" "+imagei[0])
                      newDevice.image=device[0].image+" "+imagei
+                   
                      
                     }
 
