@@ -260,7 +260,9 @@ router.post('/updateimage',fetchUser1,[
                     newDevice.image=imagei;
                   }
                   else{
-                     newDevice.image=device[0].image+","+imagei
+                     console.log(device[0].image[device[0].image.length-1]+" "+imagei[0])
+                     newDevice.image=device[0].image+" "+imagei
+                     
                     }
 
                   console.log(newDevice.image.length);
