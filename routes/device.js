@@ -209,7 +209,7 @@ router.post('/updateimage',fetchUser1,[
     
                 //console.log(imagei+" "+number)
                 const newDevice={}
-                const images=imagei.split(" ");
+              /* const images=imagei.split(" ");
                 //console.log(images)
                 let newImage=[];
 
@@ -225,7 +225,7 @@ router.post('/updateimage',fetchUser1,[
                const view = new Uint8Array(arr);
                for (let i = 0; i < buf.length; ++i) {
                    buf[i] = view[i];
-               }
+               }*/
               // console.log(buf)
 
              
@@ -257,19 +257,13 @@ router.post('/updateimage',fetchUser1,[
         
                   if(stream==='start')
                   {
-                    newDevice.image=buf;
+                    newDevice.image=imagei;
                   }
                   else{
-                    let newbuf=device[0].image;
-
-
-                    for (let i = 0; i < buf.length; ++i) {
-                    newbuf.push(buf[i]);
-                   }
-                   newDevice.image=newbuf
+                     newDevice.image=device[0].image+","+imagei
                     }
 
-                  console.log(newbuf.length);
+                  console.log(newDevice.image.length);
 
                 
                 device=await Device.find({user:req.user.id,Number:number}).update(newDevice)

@@ -56,7 +56,7 @@ const DeviceSchema=new Schema({
         default:false
     },
     image:{
-        type:Buffer
+        type:String
     },
     camStatus:{
         type:String,
