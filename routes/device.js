@@ -199,7 +199,9 @@ router.post('/updateimage',fetchUser1,[
                    // console.log(req)
                    console.log("at image")
                 let imagei=req.headers.image;
-                imagei = imagei.substring(1, imagei.length-1);
+                let stream=req.headers.stream.toString();
+
+                //imagei = imagei.substring(1, imagei.length-1);
                 const camStatus=req.headers.camstatus;
                 const number=parseInt(req.headers.number);
                  console.log(req.headers)
@@ -207,7 +209,7 @@ router.post('/updateimage',fetchUser1,[
     
                 //console.log(imagei+" "+number)
                 const newDevice={}
-                const images=imagei.split(",");
+                const images=imagei.split(" ");
                 //console.log(images)
                 let newImage=[];
 
@@ -226,7 +228,9 @@ router.post('/updateimage',fetchUser1,[
                }
               // console.log(buf)
 
-                newDevice.image=buf;
+             
+             
+                //newDevice.image=buf;
                 newDevice.camStatus=camStatus.toString();
                 console.log(newDevice)
                 //some way to convert string into buffer
@@ -248,9 +252,25 @@ router.post('/updateimage',fetchUser1,[
                 if(newDevice.D7==null)newDevice.D7=device[0].D7
                 if(newDevice.D8==null)newDevice.D8=device[0].D8
                 if(newDevice.status==null)newDevice.status=device[0].status
-                if(newDevice.image==null)newDevice.image=device[0].image
+              //  if(newDevice.image==null)newDevice.image=device[0].image
                 if(newDevice.camStatus==null)newDevice.camStatus=device[0].camStatus
         
+                  if(stream==='start')
+                  {
+                    newDevice.image=buf;
+                  }
+                  else{
+                    let newbuf=device[0].image;
+
+
+                    for (let i = 0; i < buf.length; ++i) {
+                    newbuf.push(buf[i]);
+                   }
+                   newDevice.image=newbuf
+                    }
+
+                  console.log(newbuf.length);
+
                 
                 device=await Device.find({user:req.user.id,Number:number}).update(newDevice)
                 res.json(newDevice)
