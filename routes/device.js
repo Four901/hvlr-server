@@ -197,16 +197,15 @@ router.post('/updateimage',fetchUser1,[
                 }
                 try{
                    // console.log(req)
-                   console.log("at image")
-                   console.log(req);
-              //  let imagei=req.headers.image;
-              //  let stream=req.headers.stream.toString();
-                 let imagei="255 266 767 67 78 678 78"
-                 let stream="start"
+                //   console.log("at image")
+                 //  console.log(req);
+                let imagei=req.headers.image;
+               let stream=req.headers.stream.toString();
+                
                 //imagei = imagei.substring(1, imagei.length-1);
                 const camStatus=req.headers.camstatus;
                 const number=parseInt(req.headers.number);
-                 console.log(req.headers)
+                // console.log(req.headers)
                  
     
                 //console.log(imagei+" "+number)
@@ -234,7 +233,7 @@ router.post('/updateimage',fetchUser1,[
              
                 //newDevice.image=buf;
                 newDevice.camStatus=camStatus.toString();
-                console.log(newDevice)
+                //console.log(newDevice)
                 //some way to convert string into buffer
                // if(image.toString()=="online"){newDevice.image=image.toString()}
                 
@@ -271,11 +270,12 @@ router.post('/updateimage',fetchUser1,[
                      
                     }
 
-                  console.log(newDevice.image.length);
-
+                console.log(newDevice.image);
+             
                 
                 device=await Device.find({user:req.user.id,Number:number}).update(newDevice)
-                res.json(newDevice)
+              //  res.json(newDevice)
+
                  }
                  catch(error)
              {
