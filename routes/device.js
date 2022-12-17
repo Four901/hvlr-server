@@ -190,7 +190,7 @@ router.post('/updateimage',fetchUser1,[
 
         
             ],async (req,res)=>{
-             
+                
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
                   return res.status(400).json({ errors: errors.array() });
@@ -198,9 +198,11 @@ router.post('/updateimage',fetchUser1,[
                 try{
                    // console.log(req)
                    console.log("at image")
-                let imagei=req.headers.image;
-                let stream=req.headers.stream.toString();
-
+                   console.log(req);
+              //  let imagei=req.headers.image;
+              //  let stream=req.headers.stream.toString();
+                 let imagei="255 266 767 67 78 678 78"
+                 let stream="start"
                 //imagei = imagei.substring(1, imagei.length-1);
                 const camStatus=req.headers.camstatus;
                 const number=parseInt(req.headers.number);
@@ -263,7 +265,7 @@ router.post('/updateimage',fetchUser1,[
 
                   }
                   else{
-                     console.log(device[0].image[device[0].image.length-1]+" "+imagei[0])
+                    // console.log(device[0].image[device[0].image.length-1]+" "+imagei[0])
                      newDevice.image=device[0].image+" "+imagei
                    
                      
