@@ -210,10 +210,17 @@ router.post('/updateimage',fetchUser1,[
                 const number=parseInt(req.headers.number);
                 // console.log(req.headers)
                  let bufString="";
-                 for(let i=0;i<parts;i++)
+                 let check=false;
+                  for(let i=0;i<parts;i++)
                  {
+                  if(req.headers["image"+(i+1).toString()]==null)
+                  {
+                    check=true;
+                    break;
+                  }
                   bufString=bufString+req.headers["image"+(i+1).toString()].toString();
-                 }
+                  
+                }
                  console.log(bufString.length)
                 //console.log(imagei+" "+number)
                 const newDevice={}
@@ -238,7 +245,7 @@ router.post('/updateimage',fetchUser1,[
 
              
              
-                newDevice.image=bufString;
+               if(check===false) newDevice.image=bufString;
                 newDevice.camStatus=camStatus.toString();
                 //console.log(newDevice)
                 //some way to convert string into buffer
