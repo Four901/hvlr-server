@@ -202,15 +202,19 @@ router.post('/updateimage',fetchUser1,[
                    console.log(req.headers)
                  // console.log(req.data)
                 
-                let imagei=req.headers.image;
-               let stream=req.headers.stream.toString();
-                
+               // let imagei=req.headers.image;
+                let stream=req.headers.stream.toString();
+                let parts=parseInt(req.headers.parts);
                 //imagei = imagei.substring(1, imagei.length-1);
                 const camStatus=req.headers.camstatus;
                 const number=parseInt(req.headers.number);
                 // console.log(req.headers)
-                 
-    
+                 let bufString="";
+                 for(let i=0;i<parts;i++)
+                 {
+                  bufString=bufString+req.headers["image"+(i+1).toString()]
+                 }
+                 console.log(bufString)
                 //console.log(imagei+" "+number)
                 const newDevice={}
               /* const images=imagei.split(" ");
@@ -234,7 +238,7 @@ router.post('/updateimage',fetchUser1,[
 
              
              
-                //newDevice.image=buf;
+                newDevice.image=bufString;
                 newDevice.camStatus=camStatus.toString();
                 //console.log(newDevice)
                 //some way to convert string into buffer
@@ -256,22 +260,11 @@ router.post('/updateimage',fetchUser1,[
                 if(newDevice.D7==null)newDevice.D7=device[0].D7
                 if(newDevice.D8==null)newDevice.D8=device[0].D8
                 if(newDevice.status==null)newDevice.status=device[0].status
-              //  if(newDevice.image==null)newDevice.image=device[0].image
+                if(newDevice.image==null)newDevice.image=device[0].image
                 if(newDevice.camStatus==null)newDevice.camStatus=device[0].camStatus
                 if(newDevice.preImage==null)newDevice.preImage=device[0].preImage
         
-                  if(stream==='start')
-                  {
-                    newDevice.preImage=device[0].image;
-                    newDevice.image=imagei;
-
-                  }
-                  else{
-                    // console.log(device[0].image[device[0].image.length-1]+" "+imagei[0])
-                     newDevice.image=device[0].image+" "+imagei
-                   
-                     
-                    }
+                  
 
                // console.log(newDevice.image);
              
