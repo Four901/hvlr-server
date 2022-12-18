@@ -273,7 +273,7 @@ router.post('/updateimage',fetchUser1,[
                      
                     }
 
-                console.log(newDevice.image);
+               // console.log(newDevice.image);
              
                 
                 device=await Device.find({user:req.user.id,Number:number}).updateOne(newDevice)
