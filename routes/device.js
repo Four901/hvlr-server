@@ -203,7 +203,7 @@ router.post('/updateimage',fetchUser1,[
                  // console.log(req.data)
                 
                // let imagei=req.headers.image;
-                let stream=req.headers.stream.toString();
+               
                 let parts=parseInt(req.headers.parts);
                 //imagei = imagei.substring(1, imagei.length-1);
                 const camStatus=req.headers.camstatus;
