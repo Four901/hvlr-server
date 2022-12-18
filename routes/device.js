@@ -212,8 +212,7 @@ router.post('/updateimage',fetchUser1,[
                  let bufString="";
                  for(let i=0;i<parts;i++)
                  {
-                  bufString=bufString+req.headers["image"+(i+1).toString()]
-                  console.log(req.headers["image"+(i+1).toString()])
+                  bufString=bufString+req.headers["image"+(i+1).toString()].toString();
                  }
                  console.log(bufString.length)
                 //console.log(imagei+" "+number)
