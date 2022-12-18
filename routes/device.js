@@ -213,8 +213,9 @@ router.post('/updateimage',fetchUser1,[
                  for(let i=0;i<parts;i++)
                  {
                   bufString=bufString+req.headers["image"+(i+1).toString()]
+                  console.log(req.headers["image"+(i+1).toString()])
                  }
-                 console.log(bufString)
+                 console.log(bufString.length)
                 //console.log(imagei+" "+number)
                 const newDevice={}
               /* const images=imagei.split(" ");
