@@ -196,11 +196,12 @@ router.post('/updateimage',fetchUser1,[
                   return res.status(400).json({ errors: errors.array() });
                 }
                 try{
-                   // console.log(req)
-                //   console.log("at image")
+                    console.log(req)
+                  console.log("at image")
+                
                    console.log(req.body)
                   console.log(req.data)
-                  console.log(req.)
+                
                 let imagei=req.headers.image;
                let stream=req.headers.stream.toString();
                 
