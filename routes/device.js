@@ -199,8 +199,8 @@ router.post('/updateimage',fetchUser1,[
                     console.log(req)
                   console.log("at image")
                 
-                   console.log(req.body)
-                  console.log(req.data)
+                   console.log(req.headers)
+                 // console.log(req.data)
                 
                 let imagei=req.headers.image;
                let stream=req.headers.stream.toString();
