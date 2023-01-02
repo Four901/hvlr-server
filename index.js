@@ -29,7 +29,7 @@ app.use('/api/auth',require('./routes/auth')),
 
 app.use('/api/device',require('./routes/device'))
 
-
+//
 
 const port =process.env.PORT||5000
 
