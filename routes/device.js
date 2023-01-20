@@ -108,6 +108,10 @@ router.put('/updatedevice/:id',fetchUser,[
 
 
 
+
+
+
+
 router.put('/updatestatus',fetchUser1,[
     
 
@@ -313,6 +317,145 @@ router.get('/getdevices/',fetchUser,[
             })
 
 
+
+
+router.put('/updatedeviceFromDevice',fetchUser1,[
+    
+
+        
+            ],async (req,res)=>{
+                const errors = validationResult(req);
+                if (!errors.isEmpty()) {
+                  return res.status(400).json({ errors: errors.array() });
+                }
+                try{
+                   // //console.log(req)
+               let D0=false;
+               let D1=false;
+               let D2=false;
+               let D3=false;
+               let D4=false;
+               let D5=false;
+               let D6=false;
+               let D7=false;
+               let D8=false;
+
+              
+                if((req.headers.D0).toString=="1")
+                {
+                  D0=true;
+                }
+                else{
+                  D0=false;
+                }
+                if((req.headers.D1).toString=="1")
+                {
+                  D1=true;
+                }
+                else{
+                  D1=false;
+                }
+                if((req.headers.D2).toString=="1")
+                {
+                  D2=true;
+                }
+                else{
+                  D2=false;
+                }
+                if((req.headers.D3).toString=="1")
+                {
+                  D3=true;
+                }
+                else{
+                  D3=false;
+                }
+                if((req.headers.D4).toString=="1")
+                {
+                  D4=true;
+                }
+                else{
+                  D4=false;
+                }
+                if((req.headers.D5).toString=="1")
+                {
+                  D5=true;
+                }
+                else{
+                  D5=false;
+                }
+                if((req.headers.D6).toString=="1")
+                {
+                  D6=true;
+                }
+                else{
+                  D6=false;
+                }
+                if((req.headers.D7).toString=="1")
+                {
+                  D7=true;
+                }
+                else{
+                  D7=false;
+                }
+                if((req.headers.D8).toString=="1")
+                {
+                  D8=true;
+                }
+                else{
+                  D8=false;
+                }
+               
+
+
+                const number=parseInt(req.headers.number);
+                 
+               // //console.log(req.params.id)
+                const newDevice={}
+              
+               newDevice.D0=D0
+              newDevice.D1=D1
+               newDevice.D2=D2
+                newDevice.D3=D3
+               newDevice.D4=D4
+                newDevice.D5=D5
+               newDevice.D6=D6
+                newDevice.D7=D7
+                newDevice.D8=D8
+             
+                
+         
+            
+                let device=await Device.find({user:req.user.id,Number:number})
+                
+                if(!device[0]){return res.status(404).send("Not Found")}
+              //  //console.log(device[0])
+               // //console.log("device[0]"+" "+device[0].user)
+             //   //console.log(req.user.id)
+                if(device[0].user.toString()!==req.user.id){return res.status(404).send("Not Allowed")}
+                 //
+               // if(newReply.question==null)newReply.question=post.question
+
+                newDevice.D0=device[0].D0
+                newDevice.D1=device[0].D1
+                newDevice.D2=device[0].D2
+               newDevice.D3=device[0].D3
+               newDevice.D4=device[0].D4
+               newDevice.D5=device[0].D5
+               newDevice.D6=device[0].D6
+                newDevice.D7=device[0].D7
+               newDevice.D8=device[0].D8
+                
+               device=await Device.find({user:req.user.id,Number:number}).update(newDevice)
+              
+                console.log(device[0])
+                // res.json({device})
+                 }
+                 catch(error)
+             {
+                 //console.error(error.message)
+                 res.status(500).send("Some error occured")
+             }
+                })            
 
 router.put('/controllingside',fetchUser1,[
     
