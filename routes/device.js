@@ -329,7 +329,7 @@ router.put('/updatedeviceFromDevice',fetchUser1,[
                   return res.status(400).json({ errors: errors.array() });
                 }
                 try{
-                   // //console.log(req)
+                   console.log(req.headers)
                let D0=false;
                let D1=false;
                let D2=false;
