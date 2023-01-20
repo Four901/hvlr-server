@@ -33,7 +33,7 @@ router.delete('/deleteuser',fetchUser,async (req,res)=>{
     res.send({Success,resi})
     }catch(error)
     {
-      console.error(error.message)
+      //console.error(error.message)
         res.status(500).send({Success,error:"You Need to signup"})
     }
     
@@ -47,12 +47,12 @@ router.get('/getusers',fetchUser,async (req,res)=>{
     const userId=req.user.id;
     const user=await User.findById(userId).select(-"password")
     const users=await User.find()
-     console.log(users)
+     //console.log(users)
     Success=true
     res.send({Success,users})
     }catch(error)
     {
-      console.error(error.message)
+      //console.error(error.message)
         res.status(500).send({Success,error:"You Need to Login"})
     }
     
@@ -67,33 +67,33 @@ router.post('/updateuser',[
 ],async (req,res)=>{
   let Success=false
 
-console.log("here i am ");
+//console.log("here i am ");
 const errors = validationResult(req);
-console.log("here i am "+req.body.empNo);
+//console.log("here i am "+req.body.empNo);
     if (!errors.isEmpty()) {
       return res.status(400).json({Success, errors: errors.array() });
     }
     //so from the user schema we have removed info about which one to make indexes , now we need to do a operation to check whether the user with current mail exits or not 
     try{
-      console.log("here i am "+req.body.empNo);
+      //console.log("here i am "+req.body.empNo);
       let user1=await User.findOne({empNo:req.body.empNo});
-      console.log(req.body.name)
+      //console.log(req.body.name)
       if(!user1)
       {
          return res.status(400).json({Success,error:"User with the emp no does not exists"});
       }
       const salt=await bcrypt.genSalt(10);
       const secPass= await bcrypt.hash(req.body.password,salt);
-      console.log(req.body)
+      //console.log(req.body)
 
       //followings
       let followings_list=user1.followings;
       if(req.body.followings)
       {
       const req_array_followings=(req.body.followings).split(" ");
-      console.log(req_array_followings);
+      //console.log(req_array_followings);
       req_array_followings.map((follow)=>{
-       // console.log(follow)
+       // //console.log(follow)
        if(!followings_list.includes(follow))followings_list.push(follow)
       })
       }
@@ -101,12 +101,12 @@ console.log("here i am "+req.body.empNo);
       let followers_list=user1.followers;
      if(req.body.followers){ 
       const req_array_followers=(req.body.followers).split(" ");
-      console.log(req_array_followers);
+      //console.log(req_array_followers);
       req_array_followers.map((follow)=>{
-       // console.log(follow)
+       // //console.log(follow)
        if(!followers_list.includes(follow))followers_list.push(follow)
       })}
-    //  console.log(followings_list)
+    //  //console.log(followings_list)
      // followings_list=followings_list.split(" ")
       //(listi).map((follow)=>{followings_list.concat(follow)})
      // const listi1=req.body.followings;
@@ -126,8 +126,8 @@ console.log("here i am "+req.body.empNo);
         followers:followers_list,
 
       })
-      console.log(req.body)
-      console.log(user)
+      //console.log(req.body)
+      //console.log(user)
       var data={
         "id":req.body.id
       }
@@ -137,7 +137,7 @@ console.log("here i am "+req.body.empNo);
       //.then(user => res.json(user))
       //.catch(errors,res.json({"msg":"Please enter a valid mail"}));
     }catch(error){
-      console.error(error.message)
+      //console.error(error.message)
       res.status(500).send({Success,error:"Some error occured 235"})
     }
 
@@ -160,7 +160,7 @@ router.post('/createuser',[
  
 ],async (req,res)=>{
 let Success=false
-/*console.log(req.body)
+/*//console.log(req.body)
 const user=User(req.body)
 user.save();
 res.send(req.body)*/
@@ -192,14 +192,14 @@ const errors = validationResult(req);
     let Success=true
     res.json({Success,user})
   /*  var AuthToken=jwt.sign(data,JWT_KEY);
-    console.log(AuthToken)
+    //console.log(AuthToken)
     res.json(AuthToken)
     var decoded = jwt.verify(AuthToken, JWT_KEY);
-console.log(decoded)*/
+//console.log(decoded)*/
     //.then(user => res.json(user))
     //.catch(errors,res.json({"msg":"Please enter a valid mail"}));
   }catch(error){
-   // console.error(error.message)
+   // //console.error(error.message)
     res.status(500).send({Success,error:"Some error occured 235"})
   }
 
@@ -215,7 +215,7 @@ router.post('/loginuser',[
   body('Password',"Password can not be blank"),
 ],async (req,res)=>{
   let Success=false
-/*console.log(req.body)
+/*//console.log(req.body)
 const user=User(req.body)
 user.save();
 res.send(req.body)*/
@@ -252,7 +252,7 @@ const errors = validationResult(req);
     Success=true
     res.json({Success,AuthToken})
     /*var decoded = jwt.verify(AuthToken, JWT_KEY);
-console.log(decoded)*/
+//console.log(decoded)*/
     //.then(user => res.json(user))
     //.catch(errors,res.json({"msg":"Please enter a valid mail"}));
   }catch(error){
@@ -267,7 +267,7 @@ console.log(decoded)*/
 
 router.post('/loginuser1',async (req,res)=>{
   let Success=false
-/*console.log(req.body)
+/*//console.log(req.body)
 const user=User(req.body)
 user.save();
 res.send(req.body)*/
@@ -281,7 +281,7 @@ const errors = validationResult(req);
   
 const email=req.headers.email;
 const Password=req.headers.password
-console.log(email+" "+Password)
+//console.log(email+" "+Password)
   try{
 
     let user=await User.findOne({email:email});
@@ -307,7 +307,7 @@ console.log(email+" "+Password)
     Success=true
     res.json(AuthToken)
     /*var decoded = jwt.verify(AuthToken, JWT_KEY);
-console.log(decoded)*/
+//console.log(decoded)*/
     //.then(user => res.json(user))
     //.catch(errors,res.json({"msg":"Please enter a valid mail"}));
   }catch(error){

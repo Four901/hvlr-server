@@ -30,7 +30,7 @@ router.post('/adddevice/',fetchUser,[
 
     try{
       
-         console.log("adding")
+         //console.log("adding")
        let count=await Device.countDocuments({user:req.user.id})
 
         const device=new Device({
@@ -43,7 +43,7 @@ router.post('/adddevice/',fetchUser,[
   
       }catch(error)
       {
-          console.error(error.message)
+          //console.error(error.message)
           res.status(500).send("Some error occured")
       }
     })
@@ -58,9 +58,9 @@ router.put('/updatedevice/:id',fetchUser,[
           return res.status(400).json({ errors: errors.array() });
         }
         try{
-           // console.log(req)
+           // //console.log(req)
         const {D0,D1,D2,D3,D4,D5,D6,D7,D8,status,camStatus}=req.body
-       // console.log(req.params.id)
+       // //console.log(req.params.id)
         const newDevice={}
       
         if(D0!=null){newDevice.D0=D0}
@@ -101,7 +101,7 @@ router.put('/updatedevice/:id',fetchUser,[
          }
          catch(error)
      {
-         console.error(error.message)
+         //console.error(error.message)
          res.status(500).send("Some error occured")
      }
         })
@@ -118,13 +118,13 @@ router.put('/updatestatus',fetchUser1,[
               return res.status(400).json({ errors: errors.array() });
             }
             try{
-               // console.log(req)
+               // //console.log(req)
             const status=req.headers.status;
             let id=req.headers.id;
            
             id = id.substring(1, id.length-1);
 
-            console.log(status.toString()+" "+id)
+            //console.log(status.toString()+" "+id)
             const newDevice={}
           
             
@@ -156,7 +156,7 @@ router.put('/updatestatus',fetchUser1,[
              }
              catch(error)
          {
-             console.error(error.message)
+             //console.error(error.message)
              res.status(500).send("Some error occured")
          }
             })
@@ -196,11 +196,11 @@ router.post('/updateimage',fetchUser1,[
                   return res.status(400).json({ errors: errors.array() });
                 }
                 try{
-                    //console.log(req)
-                  console.log("at image")
+                    ////console.log(req)
+                  //console.log("at image")
                 
-                   console.log(req.headers)
-                 // console.log(req.data)
+                   //console.log(req.headers)
+                 // //console.log(req.data)
                 
                // let imagei=req.headers.image;
                
@@ -208,7 +208,7 @@ router.post('/updateimage',fetchUser1,[
                 //imagei = imagei.substring(1, imagei.length-1);
                 const camStatus=req.headers.camstatus;
                 const number=parseInt(req.headers.number);
-                // console.log(req.headers)
+                // //console.log(req.headers)
                  let bufString="";
                  let check=false;
                   for(let i=0;i<parts;i++)
@@ -221,33 +221,33 @@ router.post('/updateimage',fetchUser1,[
                   bufString=bufString+req.headers["image"+(i+1).toString()].toString();
                   
                 }
-                 console.log(bufString.length)
-                //console.log(imagei+" "+number)
+                 //console.log(bufString.length)
+                ////console.log(imagei+" "+number)
                 const newDevice={}
               /* const images=imagei.split(" ");
-                //console.log(images)
+                ////console.log(images)
                 let newImage=[];
 
                 for(let j=0;j<images.length;j++)
                 {
                   newImage.push(Number.parseInt(images[j]))
                 }
-               // console.log(newImage)
+               // //console.log(newImage)
                 let arr= new Uint16Array(newImage).buffer;
-              // console.log(arr)
+              // //console.log(arr)
 
                const buf = Buffer.alloc(arr.byteLength);
                const view = new Uint8Array(arr);
                for (let i = 0; i < buf.length; ++i) {
                    buf[i] = view[i];
                }*/
-              // console.log(buf)
+              // //console.log(buf)
 
              
              
                if(check===false) newDevice.image=bufString;
                 newDevice.camStatus=camStatus.toString();
-                //console.log(newDevice)
+                ////console.log(newDevice)
                 //some way to convert string into buffer
                // if(image.toString()=="online"){newDevice.image=image.toString()}
                 
@@ -273,7 +273,7 @@ router.post('/updateimage',fetchUser1,[
         
                   
 
-               // console.log(newDevice.image);
+               // //console.log(newDevice.image);
              
                 
                 device=await Device.find({user:req.user.id,Number:number}).updateOne(newDevice)
@@ -282,7 +282,7 @@ router.post('/updateimage',fetchUser1,[
                  }
                  catch(error)
              {
-                 console.error(error.message)
+                 ////console.error(error.message)
                  res.status(500).send("Some error occured")
              }
                 })            
@@ -298,7 +298,7 @@ router.get('/getdevices/',fetchUser,[
               return res.status(400).json({ errors: errors.array() });
             }
             try{
-               // console.log(req)
+               // //console.log(req)
             
            
           
@@ -307,7 +307,7 @@ router.get('/getdevices/',fetchUser,[
              }
              catch(error)
          {
-             console.error(error.message)
+             //console.error(error.message)
              res.status(500).send("Some error occured")
          }
             })
@@ -324,26 +324,26 @@ router.put('/controllingside',fetchUser1,[
                   return res.status(400).json({ errors: errors.array() });
                 }
                 try{
-                   // console.log(req)
+                   // //console.log(req)
                 const number=parseInt(req.headers.number);
                 const status=req.headers.status;
                
     
-                console.log(status+" "+number)
+                ////console.log(status+" "+number)
                
                 const newDevice={}
               
                 
                 if(status=="online"){newDevice.status=status}
-                console.log("user:-")
-                 console.log(req.user)
+              //  //console.log("user:-")
+               //  //console.log(req.user)
          
                 let device=await Device.find({user:req.user.id,Number:number})
                 
                 if(!device[0]){return res.status(404).send("Not Found")}
-                console.log(device[0])
-                console.log("device[0]"+" "+device[0].user)
-                console.log(req.user.id)
+              //  //console.log(device[0])
+               // //console.log("device[0]"+" "+device[0].user)
+             //   //console.log(req.user.id)
                 if(device[0].user.toString()!==req.user.id){return res.status(404).send("Not Allowed")}
                  //
                // if(newReply.question==null)newReply.question=post.question
@@ -382,7 +382,7 @@ router.put('/controllingside',fetchUser1,[
                  }
                  catch(error)
              {
-                 console.error(error.message)
+                 //console.error(error.message)
                  res.status(500).send("Some error occured")
              }
                 })
@@ -400,7 +400,7 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                   return res.status(400).json({ errors: errors.array() });
                 }
                 try{
-                   // console.log(req)
+                   // //console.log(req)
                 
                    const number=parseInt(req.headers.number);
     
@@ -424,7 +424,7 @@ router.get('/getdevice',fetchUser1,async (req,res)=>{
                  }
                  catch(error)
              {
-                 console.error(error.message)
+                 //console.error(error.message)
                  res.status(500).send("Some error occured")
              }
                 })
